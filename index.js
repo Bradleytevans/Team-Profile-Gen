@@ -34,7 +34,10 @@ const addManager = () => {
             message: "Please enter the manager's office phone number.",
         },
     ])
-    .then(managerIput => {
-        const { name}
+    .then(managerInput => {
+        const { name, id, email, oNumber } = managerInput;
+        const manager = new manager (name, id, email, oNumber);
+        teamArray.push(manager);
+        console.log(manager);
     })
 };
