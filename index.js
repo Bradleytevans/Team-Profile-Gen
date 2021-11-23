@@ -2,9 +2,9 @@
 const generateHTML = require('./src/generateHTML');
 
 //team profiles
-const manager = require('./lib/manager');
-const engineer = require('./lib/engineer');
-const intern = require('./lib/intern');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
 //node.js modules
 const fs = require('fs');
@@ -12,6 +12,7 @@ const inquirer = require('inquirer');
 
 const teamArray = [];
 
+//Manager Prompts
 const addManager = () => {
     return inquirer.prompt ([
         {
@@ -34,13 +35,15 @@ const addManager = () => {
             message: "Please enter the manager's office phone number.",
         },
     ])
-    // .then(managerInput => {
-    //     const { name, id, email, oNumber } = managerInput;
-    //     const manager = new manager (name, id, email, oNumber);
-    //     teamArray.push(manager);
-    //     console.log(manager);
-    // })
+    .then(managerInput => {
+        const { name, id, email, oNumber } = managerInput;
+        const manager = new Manager (name, id, email, oNumber);
+        teamArray.push(manager);
+        console.log(manager);
+    })
 };
+
+//Employee Prompts
 const addEmployee = () => {
     console.log('Adding employees to the team');
 
@@ -85,6 +88,26 @@ const addEmployee = () => {
         },
 
     ])
+    .then(employeeData => {
+        let { name, id, email, role, github, school, confirmAddEmployee } = employeeData;
+        let employee;
+
+        if(role === "Engineer") {
+            employee = new Engineer (name, id, email, github);
+            console.log(employee);
+        } else if (role === "Intern") {
+            employee = new Intern (name, id, email, school);
+            console.log(employee);
+        }
+
+        teamArray.push(employee);
+
+        if (confirmAddEmployee) {
+            return addEmployee(teamArray);
+        } else {
+            return teamArray;
+        }
+    })
 };
 
 //function that generates the HTML page
@@ -100,6 +123,12 @@ const writeFile = data => {
 }
 addManager()
     .then(addEmployee)
+    .then(teamArray => {
+        return generateHTML(teamArray);
+    })
     .then(pageHTML => {
         return writeFile(pageHTML);
     })
+    .catch(err => {
+        console.log(err);
+    });
