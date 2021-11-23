@@ -1,5 +1,5 @@
 //link to HTML generation
-const generateHTML = require('./utils/generateHTML');
+const generateHTML = require('./src/generateHTML');
 
 //team profiles
 const manager = require('./lib/manager');
@@ -8,7 +8,7 @@ const intern = require('./lib/intern');
 
 //node.js modules
 const fs = require('fs');
-const inquirer = require('inquire');
+const inquirer = require('inquirer');
 
 const teamArray = [];
 
@@ -34,12 +34,12 @@ const addManager = () => {
             message: "Please enter the manager's office phone number.",
         },
     ])
-    .then(managerInput => {
-        const { name, id, email, oNumber } = managerInput;
-        const manager = new manager (name, id, email, oNumber);
-        teamArray.push(manager);
-        console.log(manager);
-    })
+    // .then(managerInput => {
+    //     const { name, id, email, oNumber } = managerInput;
+    //     const manager = new manager (name, id, email, oNumber);
+    //     teamArray.push(manager);
+    //     console.log(manager);
+    // })
 };
 const addEmployee = () => {
     console.log('Adding employees to the team');
@@ -85,4 +85,21 @@ const addEmployee = () => {
         },
 
     ])
+};
+
+//function that generates the HTML page
+const writeFile = data => {
+    fs.writeFile('./dist/index.html', data, err  => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("Your team profile has been created! Please checkout the index.html to see it.")
+        }
+    })
 }
+addManager()
+    .then(addEmployee)
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
