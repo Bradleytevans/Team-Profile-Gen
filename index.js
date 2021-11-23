@@ -2,9 +2,9 @@
 const generateHTML = require('./utils/generateHTML');
 
 //team profiles
-const manager = require('./list/manager');
-const engineer = require('./list/engineer');
-const intern = require('./list/intern');
+const manager = require('./lib/manager');
+const engineer = require('./lib/engineer');
+const intern = require('./lib/intern');
 
 //node.js modules
 const fs = require('fs');
@@ -41,3 +41,48 @@ const addManager = () => {
         console.log(manager);
     })
 };
+const addEmployee = () => {
+    console.log('Adding employees to the team');
+
+    return inquirer.prompt ([
+        {
+            type: 'list',
+            name: 'role',
+            message: "Please choose your employee's role",
+            choices: ['Engineer', 'Intern']
+        },
+        {
+            type: 'input',
+            name: 'name',
+            message: "What's the name of the employee?",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Please enter the employee's ID.",
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Please enter the employee's email.",
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: "Please enter the employee's github username.",
+            when: (input) => input.role === 'Engineer',
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: "Please enter the employee's github username.",
+            when: (input) => input.role === 'Intern',
+        },
+        {
+            type: 'confirm',
+            name: 'confirmAddEmployee',
+            message: 'Would you like to add more team members?',
+        },
+
+    ])
+}
