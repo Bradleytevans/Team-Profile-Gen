@@ -38,6 +38,7 @@ const addManager = () => {
     .then(managerInput => {
         const { name, id, email, oNumber } = managerInput;
         const manager = new Manager (name, id, email, oNumber);
+        
         teamArray.push(manager);
         console.log(manager);
     })
