@@ -19,26 +19,63 @@ const addManager = () => {
             type: 'input',
             name: 'name',
             message: "Please enter the name of the team manager.",
+            validate: nameInput => {
+                valid = /^\w+([\.-]?\w+)+$/.test(nameInput)
+                if (valid) {
+                    return true;
+                } else {
+                    console.log ("Please enter the manager's name.")
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'id',
-            message: "Please enter the manager's id.", 
+            message: "Please enter the manager's id.",
+            validate: idInput => {
+                valid = /^[0-9]+$/.test(idInput)
+                if (valid) {
+                    return true;
+                } else {
+                    console.log ("Please enter the manager's ID.")
+                    return false;
+                } 
+            }
         },
         {
             type: 'input',
             name: 'email',
             message: "Please enter the manager's email address.",
-        },      {
+            validate: emailInput => {
+                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInput)
+                if (valid) {
+                    return true;
+                } else {
+                    console.log ("Please enter the manager's email address.")
+                    return false;
+                }
+            }
+        },      
+        {
             type: 'input',
             name: 'oNumber',
             message: "Please enter the manager's office phone number.",
+            validate: officeInput => {
+                valid = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/.test(officeInput)
+                if (valid) {
+                    return true;
+                } else {
+                    console.log ("Please enter the manager's office phone number.")
+                    return false;
+                }
+            }
         },
     ])
     .then(managerInput => {
         const { name, id, email, oNumber } = managerInput;
         const manager = new Manager (name, id, email, oNumber);
-        
+
         teamArray.push(manager);
         console.log(manager);
     })
