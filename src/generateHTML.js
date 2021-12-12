@@ -1,8 +1,8 @@
 const generateManager = function (manager) {
     return `
-    div class="col-4 mt-4">
+    <div class="col-4 mt-4">
         <div class="card h-100">
-            <div class='card-header">
+            <div class="card-header">
                 <h3>${manager.name}</h3>
                 <h4>Manager</h4><i class="material-icons">content_paste</i>
             </div>
@@ -20,9 +20,9 @@ const generateManager = function (manager) {
 
 const generateEngineer = function (engineer) {
     return `
-    div class="col-4 mt-4">
+    <div class="col-4 mt-4">
     <div class="card h-100">
-        <div class='card-header">
+        <div class="card-header">
             <h3>${engineer.name}</h3>
             <h4>Manager</h4><i class="material-icons">content_paste</i>
         </div>
@@ -40,9 +40,9 @@ const generateEngineer = function (engineer) {
 
 const generateIntern = function (intern) {
     return `
-    div class="col-4 mt-4">
+    <div class="col-4 mt-4">
     <div class="card h-100">
-        <div class='card-header">
+        <div class="card-header">
             <h3>${intern.name}</h3>
             <h4>Manager</h4><i class="material-icons">content_paste</i>
         </div>
@@ -60,36 +60,42 @@ const generateIntern = function (intern) {
 
 generateHTML = (data) => {
 
-    pageArray = [];
+    pageArray = []; 
 
-    for (let i = 0; i < data.lenth; i++) {
+    for (let i = 0; i < data.length; i++) {
         const employee = data[i];
-        const role = employee.getRole();
+        const role = employee.getRole(); 
+
 
         if (role === 'Manager') {
             const managerCard = generateManager(employee);
 
             pageArray.push(managerCard);
         }
+
         if (role === 'Engineer') {
             const engineerCard = generateEngineer(employee);
 
             pageArray.push(engineerCard);
         }
+
         if (role === 'Intern') {
             const internCard = generateIntern(employee);
 
             pageArray.push(internCard);
         }
+        
     }
 
     const employeeCards = pageArray.join('')
 
     const generateTeam = generateTeamPage(employeeCards);
     return generateTeam;
+    
 }
+
  const generateTeamPage = function(employeeCards) {
-     return`
+  return`
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -97,6 +103,7 @@ generateHTML = (data) => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Team Profile</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -119,7 +126,9 @@ generateHTML = (data) => {
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   </html>
-     `;
+
+
+`;
  }
 
  module.exports = generateHTML;
