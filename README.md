@@ -1,10 +1,9 @@
-const generateMarkdown = data => {
-return `# ${data.title}
+# Team-Profile-Generator
 
-![Badge for license](https://img.shields.io/badge/license-${data.license}-blue)
+![Badge for license](https://img.shields.io/badge/license-GNU_AGPLv3-blue)
 
 ## Description
-${data.description}
+An application that allows the user to generate a team profile that consists of each member, and is built using Jest and Inquirer
 
 ## Table of Contents
 * [Installation](#installation)
@@ -15,26 +14,23 @@ ${data.description}
 * [Questions](#questions)
 
 ## Installation
-${data.installation}
+Download your packages, then use node index
 
 ## Usage
-${data.usage}
+
 
 ## License
-This project is covered under the ${data.license} license.
+This project is covered under the GNU_AGPLv3 license.
 
 ## Contributing
-${data.contribution}
+
 
 ## Tests
-${data.tests}
+
 
 ## Questions 
 If you have any questions, please reach out to me at the links below!
 
-GitHub: [@${data.githubUSer}](https://github.com/${data.githubUSer})
+GitHub: [@Bradleytevans](https://github.com/Bradleytevans)
   
-Email: [Send me an email!](mailto:${data.email})
-`;
-}
-module.exports = generateMarkdown;
+Email: [Send me an email!](mailto:Bradleyt.evans@gmail.com)
