@@ -9,23 +9,17 @@ An application that allows the user to generate a team profile that consists of 
 * [Installation](#installation)
 * [Usage](#usage)
 * [License](#license)
-* [Contributing](#contributing)
-* [Tests](#tests)
 * [Questions](#questions)
 
 ## Installation
 Download your packages, then use node index
 
 ## Usage
+![screencapture-file-C-Users-bradl-Desktop-projects-Team-Profile-Gen-dist-index-html-2022-01-26-16_25_07](https://user-images.githubusercontent.com/87036647/151249394-6ada84d5-d014-4292-8fd5-251aa84b99cc.png)
 
 
 ## License
 This project is covered under the GNU_AGPLv3 license.
-
-## Contributing
-
-
-## Tests
 
 
 ## Questions 
